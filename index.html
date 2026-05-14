@@ -1,0 +1,1253 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arquitectura Cyber Karun Life</title>
+  <style>
+    :root {
+      --ink: #172d35;
+      --muted: #66747b;
+      --bg: #f6f8f3;
+      --paper: #ffffff;
+      --line: #dce5dc;
+      --green: #2f7056;
+      --green-dark: #1d523d;
+      --purple: #7043a6;
+      --purple-soft: #f1e8f7;
+      --deal-red: #c63f2f;
+      --deal-red-dark: #8f2d23;
+      --deal-yellow: #fff0b8;
+      --shadow: 0 16px 38px rgba(23, 45, 53, .08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.42;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 34px 20px 60px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero {
+      order: 1;
+    }
+
+    .summary {
+      order: 2;
+    }
+
+    .bonus {
+      order: 3;
+    }
+
+    .architecture-section {
+      order: 4;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #fbf8ee 55%, #edf6f0 100%);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 36px;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      color: var(--green-dark);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .45px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 840px;
+      font-size: clamp(34px, 5vw, 60px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 820px;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .summary-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(23, 45, 53, .05);
+    }
+
+    .summary-card strong {
+      display: block;
+      color: var(--green-dark);
+      font-size: 26px;
+      margin-bottom: 4px;
+    }
+
+    .summary-card p {
+      color: var(--muted);
+    }
+
+    .section {
+      margin-top: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: 30px;
+      line-height: 1.05;
+    }
+
+    .section-head p {
+      max-width: 620px;
+      color: var(--muted);
+    }
+
+    .architecture {
+      display: grid;
+      gap: 14px;
+    }
+
+    .arch-block {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(23, 45, 53, .05);
+      overflow: hidden;
+    }
+
+    .arch-top {
+      display: grid;
+      grid-template-columns: 58px 1fr 180px;
+      gap: 16px;
+      align-items: center;
+      padding: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .number {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--green);
+      color: white;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    h3 {
+      font-size: 20px;
+      line-height: 1.12;
+      margin-bottom: 4px;
+    }
+
+    .arch-top p,
+    .arch-body p,
+    .arch-body li {
+      color: var(--muted);
+    }
+
+    .role {
+      justify-self: end;
+      background: #e6f2eb;
+      color: var(--green-dark);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .arch-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .arch-cell {
+      background: var(--paper);
+      padding: 16px 18px;
+    }
+
+    .arch-cell b {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+
+    .bonus {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      overflow: hidden;
+    }
+
+    .carousel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .carousel-head p {
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .carousel-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .arrow {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--green-dark);
+      font-weight: 900;
+      background: #fbfdfb;
+    }
+
+    .need-carousel {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(360px, 430px);
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 2px 2px 12px;
+    }
+
+    .need-carousel::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .need-carousel::-webkit-scrollbar-track {
+      background: #edf3ed;
+      border-radius: 999px;
+    }
+
+    .need-carousel::-webkit-scrollbar-thumb {
+      background: #b8cabc;
+      border-radius: 999px;
+    }
+
+    .need-block {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      display: grid;
+      gap: 12px;
+      scroll-snap-align: start;
+    }
+
+    .need-intro {
+      background: linear-gradient(140deg, #fff9ef, #f3eaf7);
+      border-radius: 10px;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .need-block.digestive .need-intro {
+      background: linear-gradient(140deg, #eefbf6, #e5f6f8);
+    }
+
+    .need-block.focus .need-intro {
+      background: linear-gradient(140deg, #f4f1e8, #e8edf2);
+    }
+
+    .label {
+      display: inline-flex;
+      width: fit-content;
+      background: var(--purple-soft);
+      color: var(--purple);
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .need-block.digestive .label {
+      background: #dff4ed;
+      color: #22725d;
+    }
+
+    .need-block.focus .label {
+      background: #ebe6d7;
+      color: #59654f;
+    }
+
+    .need-intro p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.2;
+      margin-top: 7px;
+      max-width: 190px;
+    }
+
+    .max-discount {
+      text-align: right;
+      background: var(--deal-yellow);
+      border: 1px solid rgba(198, 63, 47, .20);
+      border-radius: 12px;
+      padding: 8px 12px;
+      min-width: 104px;
+      box-shadow: 0 8px 18px rgba(198, 63, 47, .08);
+    }
+
+    .max-discount span {
+      display: block;
+      color: var(--deal-red-dark);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+    }
+
+    .max-discount strong {
+      display: block;
+      color: var(--deal-red-dark);
+      font-size: 30px;
+      line-height: .9;
+      font-weight: 900;
+    }
+
+    .products {
+      display: grid;
+      gap: 8px;
+    }
+
+    .product {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 12px;
+      align-items: center;
+      background: white;
+      min-width: 0;
+    }
+
+    .image {
+      background: #f8faf7;
+      border-radius: 8px;
+      min-height: 112px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image img {
+      width: 96%;
+      height: 100px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .badge {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: var(--deal-red);
+      color: white;
+      border-radius: 999px;
+      padding: 5px 7px;
+      font-size: 10px;
+      font-weight: 900;
+      box-shadow: 0 5px 12px rgba(198, 63, 47, .25);
+    }
+
+    .info {
+      display: grid;
+      align-content: space-between;
+      min-height: 112px;
+      min-width: 0;
+    }
+
+    .info h3 {
+      font-size: 16px;
+    }
+
+    .info p {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .price {
+      margin: 7px 0;
+      font-weight: 900;
+    }
+
+    .amounts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      align-items: baseline;
+      font-size: 12px;
+    }
+
+    .old {
+      color: #8a949a;
+      text-decoration: line-through;
+      font-weight: 800;
+    }
+
+    .cyber {
+      color: var(--deal-red-dark);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .button {
+      min-height: 31px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      padding: 0 10px;
+      font-size: 11px;
+      font-weight: 900;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .button.primary {
+      background: var(--green);
+      color: white;
+    }
+
+    .button.secondary {
+      color: var(--green-dark);
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .more {
+      border-top: 1px solid var(--line);
+      padding: 10px 2px 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .more strong {
+      font-size: 13px;
+      line-height: 1.1;
+    }
+
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .example-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 10px 24px rgba(23, 45, 53, .05);
+      padding: 16px;
+    }
+
+    .example-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .example-preview {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fbfdfb;
+      padding: 12px;
+      margin-bottom: 12px;
+      min-height: 92px;
+    }
+
+    .preview-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--green-dark);
+      color: white;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .preview-hero {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .preview-copy strong {
+      display: block;
+      font-size: 20px;
+      line-height: 1.05;
+      margin-bottom: 6px;
+    }
+
+    .preview-copy span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .preview-box {
+      min-height: 72px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #fff0b8, #f8d7cf);
+      display: grid;
+      place-items: center;
+      color: var(--deal-red-dark);
+      font-weight: 900;
+      text-align: center;
+      padding: 8px;
+    }
+
+    .mini-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      padding: 9px;
+      min-height: 78px;
+      display: grid;
+      align-content: space-between;
+    }
+
+    .mini-card b {
+      font-size: 12px;
+    }
+
+    .mini-card span {
+      color: var(--deal-red-dark);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .example-list {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .example-list b {
+      color: var(--ink);
+    }
+
+    .layout-note {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .fake-image {
+      min-height: 82px;
+      border-radius: 8px;
+      background: #f7faf7;
+      border: 1px dashed #c5d4c9;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .summary,
+      .arch-top,
+      .arch-body,
+      .examples-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .role {
+        justify-self: start;
+      }
+
+      .carousel-head,
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .need-carousel {
+        grid-auto-columns: minmax(320px, 88vw);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .page {
+        padding: 18px 10px 40px;
+      }
+
+      .hero,
+      .bonus {
+        padding: 18px;
+      }
+
+      .carousel-head h2 {
+        font-size: 22px;
+      }
+
+      .need-intro {
+        grid-template-columns: 1fr auto;
+      }
+
+      .more {
+        grid-template-columns: 1fr auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="eyebrow">Propuesta Cyber Karun Life</div>
+      <h1>Arquitectura de home para vender rapido, guiar mejor y subir conversion.</h1>
+      <p>La home de Cyber debe funcionar como un recorrido de compra: primero explica el evento, luego activa urgencia, muestra prueba social, guia por necesidad, sube ticket con packs y cierra con escasez, confianza y ayuda.</p>
+    </section>
+
+    <section class="summary">
+      <div class="summary-card">
+        <strong>1</strong>
+        <p>Reducir friccion: menos menu, menos ruido y rutas de compra claras.</p>
+      </div>
+      <div class="summary-card">
+        <strong>2</strong>
+        <p>Vender por necesidad: el cliente compra descanso, digestion o foco, no ingredientes.</p>
+      </div>
+      <div class="summary-card">
+        <strong>3</strong>
+        <p>Subir ticket: packs, recomendados y cross-sell desde la home y el carrito.</p>
+      </div>
+    </section>
+
+    <section class="section architecture-section">
+      <div class="section-head">
+        <h2>Arquitectura Recomendada</h2>
+        <p>Orden sugerido de bloques para la home durante los 3 dias de Cyber.</p>
+      </div>
+
+      <div class="architecture">
+        <article class="arch-block">
+          <div class="arch-top">
+            <span class="number">1</span>
+            <div>
+              <h3>Barra superior Cyber</h3>
+              <p>Mensaje persistente arriba de todo el sitio.</p>
+            </div>
+            <span class="role">Confianza inmediata</span>
+          </div>
+          <div class="arch-body">
+            <div class="arch-cell">
+              <b>Que contiene</b>
+              <ul>
+                <li>Cyber 3 dias</li>
+                <li>Oferta flash diaria</li>
+                <li>Despacho gratis desde monto definido</li>
+                <li>Stock limitado</li>
+              </ul>
+            </div>
+            <div class="arch-cell">
+              <b>Por que va aqui</b>
+              <p>Instala urgencia y confianza antes de que el cliente empiece a navegar.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="arch-block">
+          <div class="arch-top">
+            <span class="number">2</span>
+            <div>
+              <h3>Hero principal</h3>
+              <p>La entrada al evento Cyber.</p>
+            </div>
+            <span class="role">Orientar</span>
+          </div>
+          <div class="arch-body">
+            <div class="arch-cell">
+              <b>Que contiene</b>
+              <ul>
+                <li>Titulo claro de Cyber</li>
+                <li>Contador general</li>
+                <li>CTA: Ver ofertas Cyber</li>
+                <li>CTA: Ver mas vendidos</li>
+              </ul>
+            </div>
+            <div class="arch-cell">
+              <b>Por que va aqui</b>
+              <p>Da dos caminos simples: ver descuentos o ir directo a productos validados por otros clientes.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="arch-block">
+          <div class="arch-top">
+            <span class="number">3</span>
+            <div>
+              <h3>Oferta flash del dia</h3>
+              <p>Una sola oferta protagonista por horario limitado.</p>
+            </div>
+            <span class="role">Urgencia</span>
+          </div>
+          <div class="arch-body">
+            <div class="arch-cell">
+              <b>Que contiene</b>
+              <ul>
+                <li>1 producto, pack o coleccion</li>
+                <li>Contador propio</li>
+                <li>Ahorro fuerte</li>
+                <li>CTA directo</li>
+              </ul>
+            </div>
+            <div class="arch-cell">
+              <b>Por que va aqui</b>
+              <p>La urgencia funciona mejor cuando no compite con demasiados mensajes.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="arch-block">
+          <div class="arch-top">
+            <span class="number">4</span>
+            <div>
+              <h3>Mas vendidos Cyber</h3>
+              <p>Productos validados para quienes quieren comprar rapido y seguro.</p>
+            </div>
+            <span class="role">Prueba social</span>
+          </div>
+          <div class="arch-body">
+            <div class="arch-cell">
+              <b>Que contiene</b>
+              <ul>
+                <li>Top 8 a 12 productos Cyber</li>
+                <li>Reviews visibles</li>
+                <li>Precio Cyber y ahorro</li>
+                <li>CTA rapido: Agregar</li>
+              </ul>
+            </div>
+            <div class="arch-cell">
+              <b>Por que va aqui</b>
+              <p>En Cyber muchos clientes no quieren explorar: quieren saber que esta comprando todo el mundo.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="arch-block">
+          <div class="arch-top">
+            <span class="number">5</span>
+            <div>
+              <h3>Carrusel por necesidad</h3>
+              <p>Bloques compactos por dolor: dormir, digestion, foco, defensas, belleza y deporte.</p>
+            </div>
+            <span class="role">Guiar</span>
+          </div>
+          <div class="arch-body">
+            <div class="arch-cell">
+              <b>Que contiene</b>
+              <ul>
+                <li>Descuento maximo por necesidad</li>
+                <li>2 productos recomendados</li>
+                <li>Precio Cyber visible</li>
+                <li>CTA: Agregar y Ver mas</li>
+              </ul>
+            </div>
+            <div class="arch-cell">
+              <b>Por que va aqui</b>
+              <p>Resuelve el problema principal en suplementos: el cliente no siempre sabe que elegir.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="arch-block">
+          <div class="arch-top">
+            <span class="number">6</span>
+            <div>
+              <h3>Packs Cyber</h3>
+              <p>Rutinas listas para comprar, no combos sueltos.</p>
+            </div>
+            <span class="role">Ticket promedio</span>
+          </div>
+          <div class="arch-body">
+            <div class="arch-cell">
+              <b>Que contiene</b>
+              <ul>
+                <li>Pack Buen Dormir</li>
+                <li>Pack Buena Digestion</li>
+                <li>Pack Concentracion</li>
+                <li>Pack Defensas / Belleza / Deporte</li>
+              </ul>
+            </div>
+            <div class="arch-cell">
+              <b>Por que va aqui</b>
+              <p>Los packs simplifican la decision y elevan el valor del carrito.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="arch-block">
+          <div class="arch-top">
+            <span class="number">7</span>
+            <div>
+              <h3>Ultimas unidades</h3>
+              <p>Bloque de escasez real para productos con stock limitado.</p>
+            </div>
+            <span class="role">Cerrar decision</span>
+          </div>
+          <div class="arch-body">
+            <div class="arch-cell">
+              <b>Que contiene</b>
+              <ul>
+                <li>Productos con stock bajo</li>
+                <li>Badge: Ultimas unidades</li>
+                <li>Precio Cyber visible</li>
+                <li>CTA rapido: Agregar</li>
+              </ul>
+            </div>
+            <div class="arch-cell">
+              <b>Por que va aqui</b>
+              <p>Funciona como gatillo de decision despues de que el cliente ya vio necesidades y packs.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="arch-block">
+          <div class="arch-top">
+            <span class="number">8</span>
+            <div>
+              <h3>Confianza y ayuda</h3>
+              <p>Bloque de cierre para clientes que aun dudan.</p>
+            </div>
+            <span class="role">Cerrar compra</span>
+          </div>
+          <div class="arch-body">
+            <div class="arch-cell">
+              <b>Que contiene</b>
+              <ul>
+                <li>Reviews</li>
+                <li>Hecho en Chile</li>
+                <li>Despacho y cambios</li>
+                <li>WhatsApp para ayuda</li>
+              </ul>
+            </div>
+            <div class="arch-cell">
+              <b>Por que va aqui</b>
+              <p>Refuerza prueba social, seguridad y asistencia antes de abandonar la compra.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section bonus">
+      <div class="carousel-head">
+        <div>
+          <div class="eyebrow">Bonus visual</div>
+          <h2>Carrusel por necesidad</h2>
+          <p>Ejemplo de como podria verse el bloque de compra guiada dentro de la home.</p>
+        </div>
+        <div class="carousel-controls" aria-hidden="true">
+          <div class="arrow">&lt;</div>
+          <div class="arrow">&gt;</div>
+        </div>
+      </div>
+
+      <div class="need-carousel">
+        <article class="need-block">
+          <div class="need-intro">
+            <div>
+              <span class="label">Buen dormir</span>
+              <p>Suplementos para apoyar tu descanso.</p>
+            </div>
+            <div class="max-discount">
+              <span>Hasta un</span>
+              <strong>40%</strong>
+            </div>
+          </div>
+
+          <div class="products">
+            <article class="product">
+              <div class="image">
+                <span class="badge">-25%</span>
+                <img src="file:///C:/Users/malva/Downloads/Magnesio-Bisglicinato.jpg" alt="Magnesio Bisglicinato">
+              </div>
+              <div class="info">
+                <div>
+                  <h3>Magnesio Bisglicinato</h3>
+                  <p>Para descanso y relajacion muscular.</p>
+                  <div class="price"><span class="amounts"><span class="old">$10.990</span><span class="cyber">$8.243</span></span></div>
+                </div>
+                <div class="actions">
+                  <div class="button primary">Agregar</div>
+                  <div class="button secondary">Ver producto</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="product">
+              <div class="image">
+                <span class="badge">-20%</span>
+                <img src="file:///C:/Users/malva/Downloads/Productos_3_15cd7d19-24b5-41aa-93ad-078f1eb62dfd%20(1).png" alt="Pack Buen Dormir">
+              </div>
+              <div class="info">
+                <div>
+                  <h3>Pack Buen Dormir</h3>
+                  <p>Rutina completa para la noche.</p>
+                  <div class="price"><span class="amounts"><span class="old">$29.990</span><span class="cyber">$23.992</span></span></div>
+                </div>
+                <div class="actions">
+                  <div class="button primary">Agregar</div>
+                  <div class="button secondary">Ver pack</div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="more">
+            <strong>Mas ofertas para dormir mejor</strong>
+            <div class="button primary">Ver mas</div>
+          </aside>
+        </article>
+
+        <article class="need-block digestive">
+          <div class="need-intro">
+            <div>
+              <span class="label">Cuidado digestivo</span>
+              <p>Suplementos para apoyar tu equilibrio digestivo.</p>
+            </div>
+            <div class="max-discount">
+              <span>Hasta un</span>
+              <strong>35%</strong>
+            </div>
+          </div>
+
+          <div class="products">
+            <article class="product">
+              <div class="image">
+                <span class="badge">-35%</span>
+                <img src="file:///C:/Users/malva/Downloads/76671767_Mesa_de_trabajo_1_copia.jpg" alt="Probiotico Digestivo">
+              </div>
+              <div class="info">
+                <div>
+                  <h3>Probiotico Digestivo</h3>
+                  <p>Para apoyar microbiota y bienestar intestinal.</p>
+                  <div class="price"><span class="amounts"><span class="old">$14.990</span><span class="cyber">$9.744</span></span></div>
+                </div>
+                <div class="actions">
+                  <div class="button primary">Agregar</div>
+                  <div class="button secondary">Ver producto</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="product">
+              <div class="image">
+                <span class="badge">-20%</span>
+                <img src="file:///C:/Users/malva/Downloads/PackRendimiento_Recuperacion_Creatina_Magnesio_OptimizaturendimientofisicoyaceleraturecuperacionconlacombinacionperfectadeCreatinaMonohidratadaenPolvoyCitratodeMagne_5_ce047125-5bcb-477b-a582-e1c98efe6977.png" alt="Pack Buena Digestion">
+              </div>
+              <div class="info">
+                <div>
+                  <h3>Pack Buena Digestion</h3>
+                  <p>Rutina completa para digestion y equilibrio diario.</p>
+                  <div class="price"><span class="amounts"><span class="old">$29.990</span><span class="cyber">$23.992</span></span></div>
+                </div>
+                <div class="actions">
+                  <div class="button primary">Agregar</div>
+                  <div class="button secondary">Ver pack</div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="more">
+            <strong>Mas ofertas de cuidado digestivo</strong>
+            <div class="button primary">Ver mas</div>
+          </aside>
+        </article>
+
+        <article class="need-block focus">
+          <div class="need-intro">
+            <div>
+              <span class="label">Concentracion y foco</span>
+              <p>Suplementos para apoyar claridad mental y energia diaria.</p>
+            </div>
+            <div class="max-discount">
+              <span>Hasta un</span>
+              <strong>29%</strong>
+            </div>
+          </div>
+
+          <div class="products">
+            <article class="product">
+              <div class="image">
+                <span class="badge">-40%</span>
+                <img src="file:///C:/Users/malva/Downloads/Productos_54_bf87db80-38b8-4e6a-a9e9-0a51709808f8.png" alt="Focus">
+              </div>
+              <div class="info">
+                <div>
+                  <h3>Focus</h3>
+                  <p>Para apoyar concentracion y energia mental.</p>
+                  <div class="price"><span class="amounts"><span class="old">$15.990</span><span class="cyber">$9.594</span></span></div>
+                </div>
+                <div class="actions">
+                  <div class="button primary">Agregar</div>
+                  <div class="button secondary">Ver producto</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="product">
+              <div class="image">
+                <span class="badge">-25%</span>
+                <img src="file:///C:/Users/malva/Downloads/PACK_CONCENTRACION.png" alt="Pack Concentracion">
+              </div>
+              <div class="info">
+                <div>
+                  <h3>Pack Concentracion</h3>
+                  <p>Rutina completa para foco y claridad diaria.</p>
+                  <div class="price"><span class="amounts"><span class="old">$31.990</span><span class="cyber">$23.993</span></span></div>
+                </div>
+                <div class="actions">
+                  <div class="button primary">Agregar</div>
+                  <div class="button secondary">Ver pack</div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <aside class="more">
+            <strong>Mas ofertas de concentracion y foco</strong>
+            <div class="button primary">Ver mas</div>
+          </aside>
+        </article>
+      </div>
+    </section>
+
+    <section class="section architecture-section">
+      <div class="section-head">
+        <h2>Ejemplos de estructura por bloque</h2>
+        <p>Guia visual para mantener foco de conversion: jerarquia clara, descuentos visibles, pocos mensajes y CTAs directos.</p>
+      </div>
+
+      <div class="examples-grid">
+        <article class="example-card">
+          <h3>1. Barra superior Cyber</h3>
+          <div class="example-preview">
+            <div class="preview-bar">
+              <span>Cyber 3 dias</span>
+              <span>Oferta flash activa</span>
+              <span>Envio gratis</span>
+            </div>
+          </div>
+          <div class="example-list">
+            <span><b>Estructura:</b> franja delgada, fija, con 3 mensajes maximo.</span>
+            <span><b>Color:</b> verde Karun oscuro con texto blanco para autoridad y visibilidad.</span>
+            <span><b>Etiqueta:</b> usar “Cyber”, “Flash activa” o “Stock limitado”.</span>
+          </div>
+        </article>
+
+        <article class="example-card">
+          <h3>2. Hero principal</h3>
+          <div class="example-preview">
+            <div class="preview-hero">
+              <div class="preview-copy">
+                <strong>Cyber Karun Life</strong>
+                <span>3 dias para armar tu rutina de bienestar.</span>
+              </div>
+              <div class="preview-box">Contador + CTA</div>
+            </div>
+          </div>
+          <div class="example-list">
+            <span><b>Estructura:</b> texto a la izquierda, contador/oferta a la derecha.</span>
+            <span><b>Imagen:</b> producto o pack real, no imagen generica.</span>
+            <span><b>CTA:</b> “Ver ofertas” primero, “Ver mas vendidos” segundo.</span>
+          </div>
+        </article>
+
+        <article class="example-card">
+          <h3>3. Oferta flash del dia</h3>
+          <div class="example-preview">
+            <div class="preview-hero">
+              <div class="preview-box">-40%<br>Solo hasta las 16:00</div>
+              <div class="preview-copy">
+                <strong>Flash del dia</strong>
+                <span>1 producto, pack o coleccion. Sin competir con otras promos.</span>
+              </div>
+            </div>
+          </div>
+          <div class="example-list">
+            <span><b>Estructura:</b> descuento grande, contador, una sola accion.</span>
+            <span><b>Color:</b> rojo/amarillo solo aqui para urgencia comercial.</span>
+            <span><b>Etiqueta:</b> “Oferta flash”, “Por pocas horas”, “Stock limitado”.</span>
+          </div>
+        </article>
+
+        <article class="example-card">
+          <h3>4. Mas vendidos Cyber</h3>
+          <div class="example-preview">
+            <div class="mini-row">
+              <div class="mini-card"><b>Magnesio</b><span>$8.243</span></div>
+              <div class="mini-card"><b>Focus</b><span>$9.594</span></div>
+              <div class="mini-card"><b>Probiotico</b><span>$9.744</span></div>
+            </div>
+          </div>
+          <div class="example-list">
+            <span><b>Estructura:</b> grilla de 4 en desktop, carrusel en mobile.</span>
+            <span><b>Texto:</b> nombre, beneficio corto, review, precio Cyber.</span>
+            <span><b>Etiqueta:</b> “Mas vendido”, “Top Cyber”, “+ reviews”.</span>
+          </div>
+        </article>
+
+        <article class="example-card">
+          <h3>5. Carrusel por necesidad</h3>
+          <div class="example-preview">
+            <div class="layout-note">
+              <div class="fake-image">2 productos</div>
+              <div>
+                <b>Buen dormir</b>
+                <p>Hasta un 40%. Dos recomendados y boton “Ver mas”.</p>
+              </div>
+            </div>
+          </div>
+          <div class="example-list">
+            <span><b>Estructura:</b> categoria arriba, 2 recomendados, cierre “Ver mas”.</span>
+            <span><b>Imagen:</b> producto a la izquierda, texto y precio a la derecha.</span>
+            <span><b>Color:</b> tono suave por necesidad; descuento siempre rojo/amarillo.</span>
+          </div>
+        </article>
+
+        <article class="example-card">
+          <h3>6. Packs Cyber</h3>
+          <div class="example-preview">
+            <div class="mini-row">
+              <div class="mini-card"><b>Pack Dormir</b><span>Rutina</span></div>
+              <div class="mini-card"><b>Pack Foco</b><span>Rutina</span></div>
+              <div class="mini-card"><b>Pack Digestivo</b><span>Rutina</span></div>
+            </div>
+          </div>
+          <div class="example-list">
+            <span><b>Estructura:</b> vender rutinas, no combos de productos.</span>
+            <span><b>Texto:</b> “Para dormir mejor”, “Para foco diario”, “Para digestion”.</span>
+            <span><b>Etiqueta:</b> “Mejor ahorro”, “Rutina completa”, “Pack Cyber”.</span>
+          </div>
+        </article>
+
+        <article class="example-card">
+          <h3>7. Ultimas unidades</h3>
+          <div class="example-preview">
+            <div class="preview-hero">
+              <div class="preview-copy">
+                <strong>Quedan pocas unidades</strong>
+                <span>Mostrar solo productos con stock real bajo.</span>
+              </div>
+              <div class="preview-box">Ultimas<br>unidades</div>
+            </div>
+          </div>
+          <div class="example-list">
+            <span><b>Estructura:</b> bloque corto, maximo 4 productos.</span>
+            <span><b>Color:</b> usar rojo con moderacion para no parecer alarmista.</span>
+            <span><b>Etiqueta:</b> “Ultimas unidades”, “Stock bajo”, “No se reserva”.</span>
+          </div>
+        </article>
+
+        <article class="example-card">
+          <h3>8. Confianza y ayuda</h3>
+          <div class="example-preview">
+            <div class="mini-row">
+              <div class="mini-card"><b>Reviews</b><span>★★★★★</span></div>
+              <div class="mini-card"><b>Despacho</b><span>Claro</span></div>
+              <div class="mini-card"><b>WhatsApp</b><span>Ayuda</span></div>
+            </div>
+          </div>
+          <div class="example-list">
+            <span><b>Estructura:</b> iconos simples + frases cortas.</span>
+            <span><b>Texto:</b> resolver dudas de compra, despacho y eleccion de producto.</span>
+            <span><b>Etiqueta:</b> “Te ayudamos a elegir”, “Hecho en Chile”, “Clientes reales”.</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
